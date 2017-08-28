@@ -1,5 +1,5 @@
 from newspaper import Article
-import csv
+from json import dumps, load
 
 fake_or_real = raw_input("entr F for fake and R for real: ")
 url = raw_input('enter news url: ')
@@ -14,17 +14,14 @@ article.parse()
 # print article.source_url
 # print article.movies
 # print article.publish_date
+# print article.text
 
-datafile = '../data/my_data.csv' if fake_or_real == 'R' else '../data/fake_data.csv'
-headers = ['source_url', 'date', 'title', 'authors', 'images', 'fake or real']
-fields = [article.source_url, article.publish_date, article.title, article.authors, article.images, fake_or_real]
+strdate = str(article.publish_date)
+date = strdate.split(' ')
 
+with open("../data/my_data.txt", "a+") as datafile:
+    datafile.write(dumps({'source_url': article.source_url, 'date': date[0], 'title': article.title, 'authors': article.authors, 'images': article.images, 'text': article.text, 'fake or real': fake_or_real}, datafile, indent=7))
+datafile.close()
 
-with open(datafile, 'a') as f:
-    writer = csv.writer(f)
-    # writer.writerow(headers)
-    writer.writerow(fields)
-
-
-with open(datafile) as s:
+with open("../data/my_data.txt", "r") as s:
     print(s.read())
