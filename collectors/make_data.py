@@ -2,7 +2,7 @@ from newspaper import Article
 import json
 import os
 
-fake_or_real = raw_input("entr F for fake and R for real: ")
+fake_or_real = raw_input("enter F for fake and R for real: ")
 url = raw_input('enter news url: ')
 article = Article(url)
 
