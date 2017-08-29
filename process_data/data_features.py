@@ -129,23 +129,6 @@ class DataFeatures:
         self.check_if_title_extreme_or_not_related_to_text = DataFeatures.check_if_title_extreme_or_not_related_to_text()
         self.fake_or_real = params.get('fake or real','')
 
-
-if __name__ == '__main__':
-    data = []
-    with open('../data/fake_data.csv', delimiter='|') as datafile:
-        reader = csv.DictReader(datafile)
-        for newline in reader:
-            source_url = newline['source_url']
-            date = newline['date']
-            title = newline['title']
-            authors = newline['authors']
-            images = newline['images']
-            text = newline['text']
-            fake_or_real = newline['fake or real']
-            obj = DataFeatures(source_url, date, title, authors, images, text, fake_or_real, reader)
-            data.append(obj)
-
-
 def bytes_to_float(b):
     return float(crc32(b) & 0xffffffff)
 

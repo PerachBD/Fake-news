@@ -1,19 +1,18 @@
 import matplotlib.pyplot as plt
-import csv
+import json
 from process_data import data_features as DF
+import os
 
-if __name__ == "__main__":
+
+def get_dataset():
+    data_file_path = os.path.abspath("../data/my_data.json")
     data = []
-    with open('../data/my_data.csv') as datafile:
-        reader = [row for row in csv.DictReader(datafile)]
-        for row in reader:
-            source_url = row['source_url']
-            date = row['date']
-            title = row['title']
-            authors = row['authors']
-            images = row['images']
-            fake_or_real = row['fake or real']
-            obj = DF.DataFeatures(source_url, date, title, authors, images, fake_or_real, reader)
-            data.append(obj)
-    plt.plot(data)
-    plt.show()
+    train_set = []
+    with open(data_file_path, 'r+') as datafile:
+        content = datafile.read()
+        content = [] if content == '' else content
+        data = json.loads(content)
+        for x in data:
+            train_set.append(DF.DataFeatures(x, data))
+    return train_set
+
