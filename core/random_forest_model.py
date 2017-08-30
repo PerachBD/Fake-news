@@ -43,7 +43,6 @@ def build_model():
     X, Y = fit_set_to_model(train)
     clf = RandomForestClassifier(max_depth=4, random_state=0)
     model = clf.fit(X, Y)
-    print(clf.feature_importances_)
     tp, fn, fp, tn = make_test(test)
     print 'TruePositive: ', tp, ' FalseNegative: ', fn, ' FalsePositive: ', fp, ' TrueNegative: ', tn
     print 'accuracy: ', accuracy(tp, fn, fp, tn)
