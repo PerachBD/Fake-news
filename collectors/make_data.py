@@ -25,7 +25,7 @@ date = strdate.split(' ')
 # datafile.close()
 #
 
-data_file_path = os.path.abspath("../data/my_data.json")
+data_file_path = os.path.abspath("data/my_data.json")
 data = []
 with open(data_file_path, 'r+') as datafile:
     content = datafile.read()

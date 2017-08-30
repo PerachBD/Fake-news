@@ -1,6 +1,8 @@
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
-import urllib, cStringIO
+import urllib
+import cStringIO
+
 
 def get_exif_data(image):
     """Returns a dictionary from the exif data of an PIL Image item. Also converts the GPS Tags"""
@@ -28,12 +30,13 @@ def get_exif_data(image):
 def _get_if_exist(data, key):
     if key in data:
         return data[key]
-
     return None
 
 
 def _convert_to_degress(value):
-    """Helper function to convert the GPS coordinates stored in the EXIF to degress in float format"""
+    """
+    Helper function to convert the GPS coordinates stored in the EXIF to degress in float format
+    """
     d0 = value[0][0]
     d1 = value[0][1]
     d = float(d0) / float(d1)
@@ -50,7 +53,9 @@ def _convert_to_degress(value):
 
 
 def get_lat_lon(exif_data):
-    """Returns the latitude and longitude, if available, from the provided exif_data (obtained through get_exif_data above)"""
+    """
+    Returns the latitude and longitude, if available, from the provided exif_data (obtained through get_exif_data above)
+    """
     lat = None
     lon = None
 
