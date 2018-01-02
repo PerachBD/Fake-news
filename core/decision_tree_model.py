@@ -1,4 +1,4 @@
-from sklearn.ensemble import RandomForestClassifier
+from sklearn import tree
 from clssification import get_data_set
 import random
 
@@ -41,10 +41,10 @@ def build_model():
         return true_positive, false_negative, false_positive, true_negative
     train, test = separate_train_and_test_set()
     X, Y = fit_set_to_model(train)
-    clf = RandomForestClassifier(max_depth=4, random_state=0)
+    clf = tree.DecisionTreeClassifier(max_depth=4, random_state=0)
     model = clf.fit(X, Y)
     tp, fn, fp, tn = make_test(test)
-    print 'Random Forest Model:'
+    print 'Decision Tree Model:'
     print '-------------------'
     print '     TruePositive: ', tp, ' FalseNegative: ', fn, ' FalsePositive: ', fp, ' TrueNegative: ', tn
     print '     Accuracy: ', accuracy(tp, fn, fp, tn)

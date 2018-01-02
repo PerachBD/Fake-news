@@ -1,11 +1,11 @@
 from collectors.fetch_data import news_from_url
-from core import random_forest_model
+from core import random_forest_model, decision_tree_model, svm_model
 from core.main_model import MainModel
 
 
 def build_new_model():
     m = MainModel()
-    m.build_model(model_list=[random_forest_model,])
+    m.build_model(model_list=[random_forest_model,decision_tree_model,svm_model])
     m.save_model()
 
 
